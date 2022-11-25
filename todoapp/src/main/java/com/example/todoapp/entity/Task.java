@@ -9,7 +9,6 @@ import java.time.LocalTime;
 
 @Setter
 @Getter
-@ToString
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -19,14 +18,15 @@ public class Task {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long task_id;
+    @Column(nullable = false)
+    private Long taskId;
 
     private String task_title;
 
     @Column(length = 500)
     private String task_description;
 
-    private String task_status;
+    private String taskStatus;
 
     @CreationTimestamp
     private LocalTime created_time;
@@ -36,7 +36,7 @@ public class Task {
     private LocalTime completed_time;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "userId", nullable = false)
     private User user;
 
 }
