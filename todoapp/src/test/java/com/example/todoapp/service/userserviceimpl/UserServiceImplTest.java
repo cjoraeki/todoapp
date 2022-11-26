@@ -1,42 +1,61 @@
 package com.example.todoapp.service.userserviceimpl;
 
 import com.example.todoapp.dto.UserLoginDto;
+import com.example.todoapp.dto.UserResponseDto;
 import com.example.todoapp.dto.UserSignUpDto;
 import com.example.todoapp.entity.User;
+import com.example.todoapp.exception.ResourceNotFoundException;
 import com.example.todoapp.repository.UserRepository;
-import org.junit.jupiter.api.Assertions;
+import org.junit.After;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 @SpringBootTest
 class UserServiceImplTest {
 
+    @Autowired
     private UserRepository userRepository;
-
-    private UserSignUpDto userSignUpDto;
-
+    @Autowired
+    private UserServiceImpl userService;
+    private String email;
 
 
     @Test
-    void userSignUp() {
-        UserSignUpDto userSignUpDto = new UserSignUpDto();
-        userSignUpDto.setEmail("cj@gmail.com");
-        String email = userSignUpDto.getEmail();
+    void userSignUp() throws ResourceNotFoundException {
+        var userSignUpDto = new UserSignUpDto();
+        userSignUpDto.setFirstname("tom");
+        userSignUpDto.setSurname("Lu");
+        userSignUpDto.setPassword("111");
+        userSignUpDto.setEmail("ooo@gmail.com");
+        email = userSignUpDto.getEmail();
 
-        assertEquals("cj@gmail.com", email);
+        User userSignUp = userService.userSignUp(userSignUpDto);
+        assertEquals(userSignUpDto.getFirstname(), userSignUp.getFirstname());
     }
+
+    @AfterEach
+    public void tearDown(){
+        userRepository.deleteByEmail(email);
+    }
+
+
+
+
 
     @Test
     void shouldLoginInUserWithCorrectDetails() {
-        UserServiceImpl userService = new UserServiceImpl(userRepository);
-        User user = new User();
-        user.setFirstname("Chijioke");
+        var userLoginDto = new UserLoginDto();
+        userLoginDto.setEmail("cj@gmail.com");
+        userLoginDto.setPassword("9090");
 
+        UserResponseDto userResponseDto = new UserResponseDto();
+        userResponseDto.setEmail("cj@gmail.com");
+
+        UserResponseDto user = userService.userLogin(userLoginDto, userResponseDto);
+        assertEquals(user, userResponseDto);
     }
 }

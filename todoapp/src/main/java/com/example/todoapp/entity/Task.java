@@ -12,6 +12,7 @@ import java.time.LocalTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@ToString
 @Builder
 @Table(name = "tasks")
 public class Task {

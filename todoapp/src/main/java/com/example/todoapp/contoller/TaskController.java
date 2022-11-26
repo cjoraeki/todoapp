@@ -1,6 +1,5 @@
 package com.example.todoapp.contoller;
 
-
 import com.example.todoapp.dto.TaskDto;
 import com.example.todoapp.service.TaskService;
 import lombok.AllArgsConstructor;
@@ -8,7 +7,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
-
 
 @RestController
 @AllArgsConstructor
@@ -64,7 +62,6 @@ public class TaskController {
         List<TaskDto> taskList = taskService.viewAllDoneTasks(taskDto.getTaskStatus());
         return new ResponseEntity<>(taskList, HttpStatus.FOUND);
     }
-
 
     @GetMapping("/viewpend")
     public ResponseEntity <List<TaskDto>> toViewPendingTask(@RequestBody TaskDto taskDto){

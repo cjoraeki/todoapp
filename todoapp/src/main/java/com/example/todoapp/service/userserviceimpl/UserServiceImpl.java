@@ -26,15 +26,25 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserResponseDto userLogin(UserLoginDto userLoginDto, UserSignUpDto userSignUpDto) {
+    public UserResponseDto userLogin(UserLoginDto userLoginDto, UserResponseDto userResponseDto) {
         User user = userRepository.findUserByEmail(userLoginDto.getEmail())
                 .orElseThrow(()-> new ResourceNotFoundException("Email not found!", "Enter a valid email address"));
 
         if (user == null || !user.getPassword().equals(userLoginDto.getPassword())) {
             throw new ResourceNotFoundException("Invalid password", "Check the password and try again");
         }
-        UserResponseDto userResponseDto = new UserResponseDto();
         BeanUtils.copyProperties(user, userResponseDto);
         return userResponseDto;
     }
+
+    @Override
+    public void removeUserById(UserResponseDto userResponseDto){
+        userRepository.deleteById(userResponseDto.getUser_id());
+    }
+
+//    @Override
+//    public void removeUserByEmail (String email){
+//        userRepository.de;
+//    }
+
 }

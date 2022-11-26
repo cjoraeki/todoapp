@@ -1,6 +1,7 @@
 package com.example.todoapp.contoller;
 
 import com.example.todoapp.dto.UserLoginDto;
+import com.example.todoapp.dto.UserResponseDto;
 import com.example.todoapp.dto.UserSignUpDto;
 import com.example.todoapp.service.UserService;
 import lombok.AllArgsConstructor;
@@ -16,15 +17,20 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping("/signup")
-    public ResponseEntity<String> userSignUpToApp(@RequestBody UserSignUpDto userSignUpDto){
+    public ResponseEntity<String> userSignUpToApp(@RequestBody UserSignUpDto userSignUpDto) {
         userService.userSignUp(userSignUpDto);
         return new ResponseEntity<>("Sign up successful", HttpStatus.CREATED);
     }
 
     @GetMapping("/login")
-    public ResponseEntity<String> userLoginUpOnToDoApp(@RequestBody UserLoginDto userLoginDto, UserSignUpDto userSignUpDto) {
-        userService.userLogin(userLoginDto, userSignUpDto);
-            return new ResponseEntity<>("Login successful", HttpStatus.ACCEPTED);
+    public ResponseEntity<String> userLoginUpOnToDoApp(@RequestBody UserLoginDto userLoginDto, UserResponseDto userResponseDto) {
+        userService.userLogin(userLoginDto, userResponseDto);
+        return new ResponseEntity<>("Login successful", HttpStatus.ACCEPTED);
     }
 
+    @DeleteMapping("/delete")
+    public ResponseEntity<String> deleteUser(@RequestBody UserResponseDto userResponseDto) {
+        userService.removeUserById(userResponseDto);
+        return new ResponseEntity<>("User deleted", HttpStatus.OK);
+    }
 }

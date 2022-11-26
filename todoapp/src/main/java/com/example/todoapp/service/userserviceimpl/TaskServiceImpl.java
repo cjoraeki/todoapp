@@ -5,7 +5,6 @@ import com.example.todoapp.entity.Task;
 import com.example.todoapp.entity.User;
 import com.example.todoapp.enums.TaskStatus;
 import com.example.todoapp.repository.TaskRepository;
-import com.example.todoapp.repository.UserRepository;
 import com.example.todoapp.service.TaskService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.BeanUtils;
@@ -13,7 +12,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
+
 
 @AllArgsConstructor
 @Service
@@ -101,7 +100,7 @@ public class TaskServiceImpl implements TaskService {
         List<Task> tasks = taskRepository.findAllByUser(user).orElse(null);
 
         List<TaskDto> taskDtos = new ArrayList<>();
-        tasks.stream().forEach(task -> {
+        tasks.forEach(task -> {
             TaskDto taskDto = new TaskDto();
             BeanUtils.copyProperties(task, taskDto);
             taskDtos.add(taskDto);
@@ -118,7 +117,7 @@ public class TaskServiceImpl implements TaskService {
         List<Task> tasks = taskRepository.findTasksByTaskStatus(taskStatus).orElse(null);
 
         List<TaskDto> taskDtos = new ArrayList<>();
-        tasks.stream().forEach(task1 -> {
+        tasks.forEach(task1 -> {
             TaskDto taskDto = new TaskDto();
             BeanUtils.copyProperties(task1, taskDto);
             taskDtos.add(taskDto);
@@ -136,7 +135,7 @@ public class TaskServiceImpl implements TaskService {
         List<Task> tasks = taskRepository.findTasksByTaskStatus(taskStatus).orElse(null);
 
         List<TaskDto> taskDtos = new ArrayList<>();
-        tasks.stream().forEach(task1 -> {
+        tasks.forEach(task1 -> {
             TaskDto taskDto = new TaskDto();
             BeanUtils.copyProperties(task1, taskDto);
             taskDtos.add(taskDto);

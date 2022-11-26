@@ -9,6 +9,10 @@ public interface UserService {
 
     User userSignUp(UserSignUpDto userSignUpDto);
 
-    UserResponseDto userLogin(UserLoginDto userLoginDto, UserSignUpDto userSignUpDto);
+    UserResponseDto userLogin(UserLoginDto userLoginDto, UserResponseDto userResponseDto);
+
+    void removeUserById(UserResponseDto userResponseDto);
+
+//    void removeUserByEmail(String email);
 
 }

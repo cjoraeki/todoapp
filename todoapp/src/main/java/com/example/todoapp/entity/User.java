@@ -11,6 +11,7 @@ import java.util.Set;
 @NoArgsConstructor
 @Entity
 @Builder
+@ToString
 @Table(name = "users")
 public class User {
 
