@@ -13,6 +13,5 @@ public interface UserService {
 
     void removeUserById(UserResponseDto userResponseDto);
 
-//    void removeUserByEmail(String email);
 
 }
