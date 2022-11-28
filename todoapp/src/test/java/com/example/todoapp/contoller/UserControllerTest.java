@@ -79,9 +79,8 @@ class UserControllerTest {
 
             UserResponseDto userResponseDto = new UserResponseDto();
             userResponseDto.setUser_id(1L);
-//            userResponseDto.setEmail("cj@yahoo.com");
-//            userResponseDto.setFirstname("Ramsey");
-//            userResponseDto.setSurname("Kim");
+            userResponseDto.setEmail("0000");
+            userResponseDto.setEmail("mc@yahoo.com");
 
             String body = objectMapper.writeValueAsString(userResponseDto);
 

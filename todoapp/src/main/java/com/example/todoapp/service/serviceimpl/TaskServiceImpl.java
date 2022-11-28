@@ -1,4 +1,4 @@
-package com.example.todoapp.service.userserviceimpl;
+package com.example.todoapp.service.serviceimpl;
 
 import com.example.todoapp.dto.TaskDto;
 import com.example.todoapp.entity.Task;

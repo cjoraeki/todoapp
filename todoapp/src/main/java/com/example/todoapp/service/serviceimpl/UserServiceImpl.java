@@ -1,4 +1,4 @@
-package com.example.todoapp.service.userserviceimpl;
+package com.example.todoapp.service.serviceimpl;
 
 import com.example.todoapp.dto.UserLoginDto;
 import com.example.todoapp.dto.UserResponseDto;
@@ -19,7 +19,7 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
 
     @Override
-    public User userSignUp(UserSignUpDto userSignUpDto) {
+    public User userSignUp(UserSignUpDto userSignUpDto) throws ResourceNotFoundException{
         User user = new User();
         BeanUtils.copyProperties(userSignUpDto, user);
         return userRepository.save(user);

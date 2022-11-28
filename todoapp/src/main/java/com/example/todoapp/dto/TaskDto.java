@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.NotNull;
 import java.time.LocalTime;
 import java.util.Set;
 
@@ -18,6 +19,7 @@ public class TaskDto {
     private Long taskId;
     private String task_title;
     private String taskStatus;
+    @NotNull(message = "Task description cannot be empty")
     private String task_description;
     private LocalTime created_time;
     private LocalTime updated_time;

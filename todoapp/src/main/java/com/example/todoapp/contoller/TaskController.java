@@ -1,11 +1,14 @@
 package com.example.todoapp.contoller;
 
 import com.example.todoapp.dto.TaskDto;
+import com.example.todoapp.entity.Task;
 import com.example.todoapp.service.TaskService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -16,9 +19,9 @@ public class TaskController {
     private TaskService taskService;
 
     @PostMapping("/create")
-    public ResponseEntity<String> toCreateTask(@RequestBody TaskDto taskDto){
-        taskService.createTask(taskDto);
-        return new ResponseEntity<>("Task created", HttpStatus.CREATED);
+    public ResponseEntity<Task> toCreateTask(@Valid @RequestBody TaskDto taskDto){
+        Task task = taskService.createTask(taskDto);
+        return new ResponseEntity<>(task, HttpStatus.CREATED);
     }
 
     @PostMapping("/completed")

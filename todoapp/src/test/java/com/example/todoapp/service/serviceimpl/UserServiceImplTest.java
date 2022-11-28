@@ -1,4 +1,4 @@
-package com.example.todoapp.service.userserviceimpl;
+package com.example.todoapp.service.serviceimpl;
 
 import com.example.todoapp.dto.UserLoginDto;
 import com.example.todoapp.dto.UserResponseDto;
@@ -6,7 +6,6 @@ import com.example.todoapp.dto.UserSignUpDto;
 import com.example.todoapp.entity.User;
 import com.example.todoapp.exception.ResourceNotFoundException;
 import com.example.todoapp.repository.UserRepository;
-import org.junit.After;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

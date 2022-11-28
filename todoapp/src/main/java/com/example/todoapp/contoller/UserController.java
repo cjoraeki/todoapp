@@ -9,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/user")
 @AllArgsConstructor
@@ -17,7 +19,7 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping("/signup")
-    public ResponseEntity<String> userSignUpToApp(@RequestBody UserSignUpDto userSignUpDto) {
+    public ResponseEntity<String> userSignUpToApp(@Valid @RequestBody UserSignUpDto userSignUpDto) {
         userService.userSignUp(userSignUpDto);
         return new ResponseEntity<>("Sign up successful", HttpStatus.CREATED);
     }

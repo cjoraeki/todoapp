@@ -1,11 +1,10 @@
-package com.example.todoapp.service.userserviceimpl;
+package com.example.todoapp.service.serviceimpl;
 
 import com.example.todoapp.dto.TaskDto;
 import com.example.todoapp.entity.Task;
 import com.example.todoapp.repository.TaskRepository;
 import com.example.todoapp.service.TaskService;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
