@@ -4,6 +4,7 @@ import com.example.todoapp.dto.UserLoginDto;
 import com.example.todoapp.dto.UserResponseDto;
 import com.example.todoapp.dto.UserSignUpDto;
 import com.example.todoapp.entity.User;
+import com.example.todoapp.exception.InvalidEntryException;
 import com.example.todoapp.exception.ResourceNotFoundException;
 import com.example.todoapp.repository.UserRepository;
 import com.example.todoapp.service.UserService;
@@ -19,9 +20,13 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
 
     @Override
-    public User userSignUp(UserSignUpDto userSignUpDto) throws ResourceNotFoundException{
+    public User userSignUp(UserSignUpDto userSignUpDto) {
         User user = new User();
+        if (userSignUpDto.getFirstname().isEmpty()){
+            throw new InvalidEntryException("Empty input", "Please enter a name");
+        }
         BeanUtils.copyProperties(userSignUpDto, user);
+
         return userRepository.save(user);
     }
 

@@ -29,8 +29,7 @@ class TaskControllerTest {
     private TaskService taskService;
 
     @Test
-    void toCreateTask() {
-        try {
+    void toCreateTask() throws Exception {
 
             TaskDto taskDto = new TaskDto();
             taskDto.setUser_id(1L);
@@ -44,9 +43,6 @@ class TaskControllerTest {
                             .content(requestBody))
                     .andExpect(status().isCreated());
 
-        }catch (Exception exception){
-            exception.printStackTrace();
-        }
     }
 
     @Test

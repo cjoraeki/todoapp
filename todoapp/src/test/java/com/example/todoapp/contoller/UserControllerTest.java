@@ -5,6 +5,7 @@ import com.example.todoapp.dto.UserResponseDto;
 import com.example.todoapp.dto.UserSignUpDto;
 import com.example.todoapp.exception.ResourceNotFoundException;
 import com.example.todoapp.service.UserService;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.After;
 import org.junit.jupiter.api.Test;
@@ -26,10 +27,13 @@ class UserControllerTest {
     @MockBean
     private UserService userService;
 
+    @After
+    public void tearDown() {
+    }
 
     @Test
-    void userSignUpToApp() throws ResourceNotFoundException {
-        try {
+    void userSignUpToApp() throws Exception {
+
             UserSignUpDto userSignUpDto = new UserSignUpDto();
             userSignUpDto.setFirstname("Mark");
             userSignUpDto.setSurname("Cuban");
@@ -42,23 +46,16 @@ class UserControllerTest {
                     .content(requestBody))
                     .andExpect(status().isCreated());
 
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-
     }
 
-    @After
-    public void tearDown() {
-    }
+
 
 
     @Test
-    void userLoginUpOnToDoApp() {
+    void userLoginUpOnToDoApp() throws Exception{
 
-        try {
             UserLoginDto userLoginDto = new UserLoginDto();
-            userLoginDto.setEmail("0000");
+            userLoginDto.setPassword("0000");
             userLoginDto.setEmail("mc@yahoo.com");
 
             String responseBody = objectMapper.writeValueAsString(userLoginDto);
@@ -67,15 +64,11 @@ class UserControllerTest {
                     .content(responseBody))
                     .andExpect(status().isAccepted());
 
-        }catch (Exception e){
-            e.printStackTrace();
-        }
+
     }
 
     @Test
-    void deleteUser() {
-
-        try {
+    void deleteUser() throws Exception{
 
             UserResponseDto userResponseDto = new UserResponseDto();
             userResponseDto.setUser_id(1L);
@@ -89,9 +82,7 @@ class UserControllerTest {
                     .content(body));
 //                    .andExpect(status().isOk());
 
-        }catch (Exception exception){
-            exception.printStackTrace();
-        }
+
 
     }
 }

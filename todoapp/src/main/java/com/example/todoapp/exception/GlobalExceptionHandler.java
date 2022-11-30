@@ -19,4 +19,14 @@ public class GlobalExceptionHandler {
 
         return new ResponseEntity<>(apiError, HttpStatus.NOT_FOUND);
     }
+
+    @ExceptionHandler(InvalidEntryException.class)
+    protected ResponseEntity<Object> handleNotFound(InvalidEntryException exception){
+        ApiError apiError = new ApiError();
+        apiError.setStatus(HttpStatus.NOT_FOUND);
+        apiError.setMessage(exception.getMessage());
+        apiError.setDebugMessage(exception.getDebugMessage());
+
+        return new ResponseEntity<>(apiError, HttpStatus.NOT_FOUND);
+    }
 }

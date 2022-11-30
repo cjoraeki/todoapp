@@ -2,8 +2,6 @@ package com.example.todoapp.dto;
 
 
 import lombok.Data;
-
-import javax.persistence.Column;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -21,7 +19,6 @@ public class UserSignUpDto {
     private String surname;
 
     @Email(message = "Email cannot be empty or email exists")
-    @Column(unique=true)
     private String email;
 
     @NotNull(message = "Password is a required field")
